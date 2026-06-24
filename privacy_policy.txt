@@ -9,6 +9,5 @@ Authentication data provided through TikTok OAuth is used only for the purpose o
 Users may revoke access at any time through their TikTok account settings.
 
 Contact:
-your-email@example.com
-
+lafdesjeux@gmail.com
 Last updated: June 2026
