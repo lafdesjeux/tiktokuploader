@@ -2,28 +2,68 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>RetroReelsUploader</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Reusable open-source desktop interface for publishing creator-approved local videos through TikTok's official APIs.">
+  <title>TikTok Desktop Publisher</title>
+  <style>
+    :root { color-scheme: dark; --bg:#0b1020; --panel:#121a31; --text:#eef2ff; --muted:#a9b3cf; --accent:#6ee7f2; --line:#263252; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; background:radial-gradient(circle at 20% 0%,#19254a 0,var(--bg) 42%); color:var(--text); line-height:1.6; }
+    a { color:var(--accent); }
+    .wrap { max-width:1080px; margin:auto; padding:28px; }
+    nav { display:flex; align-items:center; justify-content:space-between; gap:18px; }
+    nav .brand { display:flex; align-items:center; gap:12px; font-weight:800; }
+    nav img { width:44px; height:44px; border-radius:11px; }
+    nav .links { display:flex; gap:18px; flex-wrap:wrap; }
+    .hero { display:grid; grid-template-columns:1.25fr .75fr; gap:34px; align-items:center; min-height:560px; }
+    h1 { font-size:clamp(2.4rem,6vw,4.8rem); line-height:1.02; margin:0 0 24px; letter-spacing:-.04em; }
+    .lead { font-size:1.18rem; color:var(--muted); max-width:720px; }
+    .button { display:inline-block; background:var(--accent); color:#071018; text-decoration:none; font-weight:800; padding:12px 18px; border-radius:10px; margin:14px 10px 0 0; }
+    .button.secondary { background:transparent; color:var(--text); border:1px solid var(--line); }
+    .preview { background:linear-gradient(145deg,#17213d,#0f162b); border:1px solid var(--line); border-radius:22px; padding:24px; box-shadow:0 24px 80px #0008; }
+    .preview img { width:100%; display:block; border-radius:18px; }
+    .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin:34px 0 70px; }
+    .card { background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:22px; }
+    .card h2 { margin-top:0; font-size:1.12rem; }
+    .card p { color:var(--muted); margin-bottom:0; }
+    .workflow { padding:28px 0 70px; }
+    .workflow ol { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; list-style:none; padding:0; counter-reset:item; }
+    .workflow li { counter-increment:item; background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:18px; }
+    .workflow li::before { content:counter(item); display:grid; place-items:center; width:30px; height:30px; border-radius:50%; background:var(--accent); color:#071018; font-weight:900; margin-bottom:12px; }
+    footer { border-top:1px solid var(--line); color:var(--muted); padding:26px 0; display:flex; justify-content:space-between; gap:18px; flex-wrap:wrap; }
+    @media (max-width:760px) { .hero { grid-template-columns:1fr; padding:70px 0; } .grid,.workflow ol { grid-template-columns:1fr; } nav { align-items:flex-start; } }
+  </style>
 </head>
 <body>
-  <h1>RetroReelsUploader</h1>
-
-  <p>
-    RetroReelsUploader is a private desktop automation tool used by the owner
-    to publish their own retro gaming videos to their TikTok account.
-  </p>
-
-  <p>
-    The tool uses TikTok Login Kit for OAuth authorization and the TikTok
-    Content Posting API to publish videos selected and reviewed locally.
-  </p>
-
-  <p>
-    This is not a public service. There are no third-party users.
-  </p>
-
-  <p>
-    <a href="terms.html">Terms of Service</a><br>
-    <a href="privacy.html">Privacy Policy</a>
-  </p>
+  <div class="wrap">
+    <nav>
+      <div class="brand"><img src="assets/icon.svg" alt=""><span>TikTok Desktop Publisher</span></div>
+      <div class="links"><a href="#features">Features</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></div>
+    </nav>
+    <main>
+      <section class="hero">
+        <div>
+          <h1>Creator-controlled video publishing from the desktop.</h1>
+          <p class="lead">An open-source, reusable desktop interface for TikTok Login Kit and Content Posting API. Every creator authorizes their own account, reviews the video, selects the available privacy controls, and explicitly approves the export.</p>
+          <a class="button" href="https://github.com/lafdesjeux/RetroReelsUploader">View source</a>
+          <a class="button secondary" href="https://github.com/lafdesjeux/RetroReelsUploader#install">Installation</a>
+        </div>
+        <div class="preview"><img src="assets/icon.svg" alt="TikTok Desktop Publisher application icon"></div>
+      </section>
+      <section id="features" class="grid">
+        <article class="card"><h2>OAuth for every creator</h2><p>Desktop Login Kit with PKCE and anti-CSRF state. No account or token is embedded in the application.</p></article>
+        <article class="card"><h2>Current creator controls</h2><p>The export screen queries creator information and displays the privacy and interaction options currently allowed by TikTok.</p></article>
+        <article class="card"><h2>Local-first security</h2><p>Videos and queue data remain on the creator's device. Tokens use the operating-system keyring when available.</p></article>
+        <article class="card"><h2>Official Direct Post flow</h2><p>Initialize the post, transfer the media in compliant chunks, and check asynchronous processing status.</p></article>
+        <article class="card"><h2>Explicit export consent</h2><p>Publishing is blocked until the creator confirms they reviewed and authorized the selected video.</p></article>
+        <article class="card"><h2>Reusable automation</h2><p>A compatible CLI and local queue support scripts, cron, launchd, and Windows Task Scheduler without exposing credentials.</p></article>
+      </section>
+      <section class="workflow">
+        <h2>End-to-end flow</h2>
+        <ol><li>Connect a TikTok account</li><li>Load creator permissions</li><li>Review and approve the video</li><li>Upload and track status</li></ol>
+      </section>
+    </main>
+    <footer><span>Open-source desktop application. Not affiliated with or endorsed by TikTok.</span><span><a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms of Service</a></span></footer>
+  </div>
 </body>
 </html>

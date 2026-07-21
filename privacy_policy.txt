@@ -1,13 +1,1 @@
-Privacy Policy
-
-Retro Gaming Reloaded uses TikTok APIs solely to upload video content to TikTok accounts authorized by the user.
-
-The application does not collect, store, sell, or share personal information with third parties.
-
-Authentication data provided through TikTok OAuth is used only for the purpose of publishing content and managing authorized accounts.
-
-Users may revoke access at any time through their TikTok account settings.
-
-Contact:
-lafdesjeux@gmail.com
-Last updated: June 2026
+Privacy Policy: https://lafdesjeux.github.io/RetroReelsUploader/privacy.html
